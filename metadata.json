@@ -1,0 +1,5 @@
+{
+  "name": "WellDash",
+  "description": "A school wellness dashboard that tracks healthy eating, physical activity, and engages students and parents in health challenges. It features an admin panel for data entry, a parent portal with AI-powered health advice, and a leaderboard to foster friendly competition among schools.",
+  "requestFramePermissions": []
+}
