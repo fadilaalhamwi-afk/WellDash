@@ -12,7 +12,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ language, onLogSubmit }) => {
   const t = translations[language];
   const [grade, setGrade] = useState('');
   const [studentsAttended, setStudentsAttended] = useState('');
-  const [attendedActivity, setAttendedActivity] = useState(false);
+  const [classType, setClassType] = useState<'academic' | 'activity' | null>(null);
   const [intensity, setIntensity] = useState<'low' | 'medium' | 'high' | null>(null);
   const [hadBreak, setHadBreak] = useState(false);
   const [teacherName, setTeacherName] = useState('');
@@ -22,7 +22,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ language, onLogSubmit }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!grade || !studentsAttended || !teacherName) {
+    if (!grade || !studentsAttended || !teacherName || !classType) {
       alert("Please fill all required fields.");
       return;
     }
@@ -33,17 +33,17 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ language, onLogSubmit }) => {
       date: new Date().toISOString().split('T')[0],
       healthyChoices: healthyChoices,
       activityClass: {
-        attended: attendedActivity,
-        intensity: attendedActivity ? intensity : null,
+        attended: classType === 'activity',
+        intensity: classType === 'activity' ? intensity : null,
       },
-      academicBreak: hadBreak,
+      academicBreak: classType === 'academic' ? hadBreak : false,
       teacher: teacherName,
     };
     onLogSubmit(newLog);
     // Reset form
     setGrade('');
     setStudentsAttended('');
-    setAttendedActivity(false);
+    setClassType(null);
     setIntensity(null);
     setHadBreak(false);
     setTeacherName('');
@@ -79,14 +79,14 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ language, onLogSubmit }) => {
           </div>
 
           <div className="space-y-2">
-            <label className="block text-lg font-semibold text-yellow-800">{t.attendedActivity}?</label>
+            <label className="block text-lg font-semibold text-yellow-800">{t.classType}</label>
             <div className="flex gap-4">
-              <button type="button" onClick={() => setAttendedActivity(true)} className={`px-4 py-2 rounded-md w-full ${attendedActivity ? 'bg-yellow-500 text-white' : 'bg-yellow-100'}`}>{t.yes}</button>
-              <button type="button" onClick={() => { setAttendedActivity(false); setIntensity(null); }} className={`px-4 py-2 rounded-md w-full ${!attendedActivity ? 'bg-yellow-500 text-white' : 'bg-yellow-100'}`}>{t.no}</button>
+              <button type="button" onClick={() => { setClassType('academic'); setIntensity(null); }} className={`px-4 py-2 rounded-md w-full ${classType === 'academic' ? 'bg-yellow-500 text-white' : 'bg-yellow-100'}`}>{t.academic}</button>
+              <button type="button" onClick={() => { setClassType('activity'); setHadBreak(false); }} className={`px-4 py-2 rounded-md w-full ${classType === 'activity' ? 'bg-yellow-500 text-white' : 'bg-yellow-100'}`}>{t.activity}</button>
             </div>
           </div>
 
-          {attendedActivity && (
+          {classType === 'activity' && (
             <div>
               <label htmlFor="intensity" className="block text-lg font-semibold text-yellow-800">{t.intensity}</label>
               <select id="intensity" value={intensity || ''} onChange={e => setIntensity(e.target.value as 'low' | 'medium' | 'high')}
@@ -99,13 +99,15 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ language, onLogSubmit }) => {
             </div>
           )}
 
-          <div className="space-y-2">
-            <label className="block text-lg font-semibold text-yellow-800">{t.activeBreak}?</label>
-            <div className="flex gap-4">
-              <button type="button" onClick={() => setHadBreak(true)} className={`px-4 py-2 rounded-md w-full ${hadBreak ? 'bg-yellow-500 text-white' : 'bg-yellow-100'}`}>{t.yes}</button>
-              <button type="button" onClick={() => setHadBreak(false)} className={`px-4 py-2 rounded-md w-full ${!hadBreak ? 'bg-yellow-500 text-white' : 'bg-yellow-100'}`}>{t.no}</button>
+          {classType === 'academic' && (
+            <div className="space-y-2">
+              <label className="block text-lg font-semibold text-yellow-800">{t.activeBreakQuestion}</label>
+              <div className="flex gap-4">
+                <button type="button" onClick={() => setHadBreak(true)} className={`px-4 py-2 rounded-md w-full ${hadBreak ? 'bg-yellow-500 text-white' : 'bg-yellow-100'}`}>{t.yes}</button>
+                <button type="button" onClick={() => setHadBreak(false)} className={`px-4 py-2 rounded-md w-full ${!hadBreak ? 'bg-yellow-500 text-white' : 'bg-yellow-100'}`}>{t.no}</button>
+              </div>
             </div>
-          </div>
+          )}
           
           <div>
             <label htmlFor="teacherName" className="block text-lg font-semibold text-yellow-800">{t.teacherName}</label>

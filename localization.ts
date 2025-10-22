@@ -51,6 +51,10 @@ export const translations = {
     yourSmoothie: "Your Smoothie",
     makeSmoothie: "Make Smoothie!",
     smoothieMade: "Your healthy smoothie is ready! +25 points!",
+    classType: "Class Type",
+    academic: "Academic",
+    activity: "Activity",
+    activeBreakQuestion: "Did the class include a 5-7 minute active break?",
   },
   ar: {
     appName: "ويل داش",
@@ -104,5 +108,9 @@ export const translations = {
     yourSmoothie: "عصيرك",
     makeSmoothie: "اصنع العصير!",
     smoothieMade: "عصيرك الصحي جاهز! +25 نقطة!",
+    classType: "نوع الحصة",
+    academic: "دراسية",
+    activity: "نشاط",
+    activeBreakQuestion: "هل تضمنت الحصة استراحة نشطة لمدة 5-7 دقائق؟",
   }
 };

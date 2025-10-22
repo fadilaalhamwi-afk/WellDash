@@ -46,12 +46,14 @@ const Dashboard: React.FC<DashboardProps> = ({ activityLog, language }) => {
                     <span className="capitalize font-bold text-yellow-800">{activityLog.activityClass.intensity ? t[activityLog.activityClass.intensity] : 'N/A'}</span>
                  </div>
               )}
-              <div className="flex justify-between items-center bg-yellow-100 p-3 rounded-lg">
-                <span className="font-semibold">{t.activeBreak}:</span>
-                 <span className={`px-3 py-1 rounded-full text-white font-bold ${activityLog.academicBreak ? 'bg-green-500' : 'bg-red-500'}`}>
-                   {activityLog.academicBreak ? t.yes : t.no}
-                </span>
-              </div>
+              {!activityLog.activityClass.attended && (
+                <div className="flex justify-between items-center bg-yellow-100 p-3 rounded-lg">
+                  <span className="font-semibold">{t.activeBreak}:</span>
+                   <span className={`px-3 py-1 rounded-full text-white font-bold ${activityLog.academicBreak ? 'bg-green-500' : 'bg-red-500'}`}>
+                     {activityLog.academicBreak ? t.yes : t.no}
+                  </span>
+                </div>
+              )}
                <div className="flex justify-between items-center bg-yellow-100 p-3 rounded-lg">
                 <span className="font-semibold">{t.teacher}:</span>
                 <span className="font-bold text-yellow-800">{activityLog.teacher}</span>
