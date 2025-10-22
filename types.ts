@@ -7,6 +7,7 @@ export interface CanteenItem {
   icon: string;
   isHealthy: boolean;
   points: number;
+  isSmoothieIngredient?: boolean;
 }
 
 export interface ActivityLog {

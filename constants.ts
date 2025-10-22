@@ -1,4 +1,3 @@
-
 import { type School, type Challenge, type CanteenItem } from './types';
 
 export const SCHOOLS: School[] = [
@@ -34,11 +33,17 @@ export const CHALLENGES: Challenge[] = [
 ];
 
 export const CANTEEN_MENU: CanteenItem[] = [
-    { id: 1, name: { en: "Apple Slices", ar: "شرائح تفاح" }, icon: "🍎", isHealthy: true, points: 10 },
+    { id: 1, name: { en: "Apple Slices", ar: "شرائح تفاح" }, icon: "🍎", isHealthy: true, points: 10, isSmoothieIngredient: true },
     { id: 2, name: { en: "Grilled Chicken Salad", ar: "سلطة دجاج مشوي" }, icon: "🥗", isHealthy: true, points: 10 },
     { id: 3, name: { en: "Vegetable Sticks & Hummus", ar: "خضروات مع حمص" }, icon: "🥕", isHealthy: true, points: 10 },
-    { id: 4, name: { en: "Yogurt", ar: "زبادي" }, icon: "🍦", isHealthy: true, points: 10 },
+    { id: 4, name: { en: "Yogurt", ar: "زبادي" }, icon: "🍦", isHealthy: true, points: 10, isSmoothieIngredient: true },
     { id: 5, name: { en: "Pizza Slice", ar: "شريحة بيتزا" }, icon: "🍕", isHealthy: false, points: 0 },
     { id: 6, name: { en: "Fries", ar: "بطاطس مقلية" }, icon: "🍟", isHealthy: false, points: 0 },
     { id: 7, name: { en: "Chocolate Bar", ar: "لوح شوكولاتة" }, icon: "🍫", isHealthy: false, points: 0 },
+    { id: 8, name: { en: "Banana", ar: "موز" }, icon: "🍌", isHealthy: true, points: 10, isSmoothieIngredient: true },
+    { id: 9, name: { en: "Berries", ar: "توت" }, icon: "🍓", isHealthy: true, points: 10, isSmoothieIngredient: true },
+    { id: 10, name: { en: "Spinach", ar: "سبانخ" }, icon: "🥬", isHealthy: true, points: 10, isSmoothieIngredient: true },
+    { id: 11, name: { en: "Milk", ar: "حليب" }, icon: "🥛", isHealthy: true, points: 10, isSmoothieIngredient: true },
+    { id: 12, name: { en: "Oats", ar: "شوفان" }, icon: "🥣", isHealthy: true, points: 10, isSmoothieIngredient: true },
+    { id: 13, name: { en: "Honey", ar: "عسل" }, icon: "🍯", isHealthy: true, points: 10, isSmoothieIngredient: true },
 ];

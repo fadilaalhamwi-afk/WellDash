@@ -10,7 +10,7 @@ interface CanteenMenuProps {
 
 const CanteenMenu: React.FC<CanteenMenuProps> = ({ language }) => {
   const t = translations[language];
-  const smoothieIngredients = CANTEEN_MENU.filter(item => item.isHealthy);
+  const smoothieIngredients = CANTEEN_MENU.filter(item => item.isSmoothieIngredient);
   const [selectedIngredients, setSelectedIngredients] = useState<CanteenItem[]>([]);
 
   const toggleIngredient = (ingredient: CanteenItem) => {
